@@ -1,12 +1,12 @@
-#include "IM3D.h"
+#include "Imgn.h"
 
-class Sandbox : public IM3D::Application
+class Sandbox : public Imgn::Application
 {
 public:
 private:
 };
 
-IM3D::Application* IM3D::CreateApplication()
+std::shared_ptr<Imgn::Application> Imgn::CreateApplication()
 {
-    return new Sandbox();
+    return std::make_shared<Sandbox>();
 }

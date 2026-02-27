@@ -1,0 +1,18 @@
+[submodule "Imgn/vendor/glfw"]
+	path = Imgn/vendor/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "Imgn/vendor/assimp"]
+	path = Imgn/vendor/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "Imgn/vendor/spdlog"]
+	path = Imgn/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "Imgn/vendor/imgui"]
+	path = Imgn/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "Imgn/vendor/glm"]
+	path = Imgn/vendor/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "Imgn/vendor/glad"]
+	path = Imgn/vendor/glad
+	url = https://github.com/Dav1dde/glad.git

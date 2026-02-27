@@ -1,8 +1,8 @@
-# IM3D Game Engine Documentation
+# Imgn Game Engine Documentation
 
 ## Overview
 
-IM3D (Imagine3D) is a 3D game engine built in C++ with a focus on simplicity and performance. The engine is heavily inspired by the Hazel Engine and provides a solid foundation for creating 3D applications and games.
+Imgn (Imgn) is a 3D game engine built in C++ with a focus on simplicity and performance. The engine is heavily inspired by the Hazel Engine and provides a solid foundation for creating 3D applications and games.
 
 ## Table of Contents
 
@@ -30,19 +30,19 @@ IM3D (Imagine3D) is a 3D game engine built in C++ with a focus on simplicity and
 
 1. Clone the repository
 2. Build the engine using CMake
-3. Create your application by inheriting from `IM3D::Application`
+3. Create your application by inheriting from `Imgn::Application`
 
 ```cpp
-#include "IM3D.h"
+#include "Imgn.h"
 
-class MyGame : public IM3D::Application
+class MyGame : public Imgn::Application
 {
 public:
     MyGame() = default;
     ~MyGame() = default;
 };
 
-std::shared_ptr<IM3D::Application> IM3D::CreateApplication()
+std::shared_ptr<Imgn::Application> Imgn::CreateApplication()
 {
     return std::make_shared<MyGame>();
 }
@@ -52,7 +52,7 @@ std::shared_ptr<IM3D::Application> IM3D::CreateApplication()
 
 ### Core Design
 
-The IM3D engine follows a layered architecture:
+The Imgn engine follows a layered architecture:
 
 ```mermaid
 graph TD
@@ -87,31 +87,31 @@ The engine uses spdlog for comprehensive logging capabilities.
 
 ```cpp
 // Core engine logging
-IM3D_LOG_CORE(IM3D_INFO, "Engine initialized successfully");
+Imgn_LOG_CORE(Imgn_INFO, "Engine initialized successfully");
 
 // Client application logging  
-IM3D_LOG_CLIENT(IM3D_WARN, "Warning message: {}", warningText);
+Imgn_LOG_CLIENT(Imgn_WARN, "Warning message: {}", warningText);
 ```
 
 **Log Levels:**
-- `IM3D_TRACE`: Detailed trace information
-- `IM3D_DEBUG`: Debug information
-- `IM3D_INFO`: General information
-- `IM3D_WARN`: Warning messages
-- `IM3D_ERR`: Error messages
-- `IM3D_CTCL`: Critical errors
+- `Imgn_TRACE`: Detailed trace information
+- `Imgn_DEBUG`: Debug information
+- `Imgn_INFO`: General information
+- `Imgn_WARN`: Warning messages
+- `Imgn_ERR`: Error messages
+- `Imgn_CTCL`: Critical errors
 
 ### Debug and Assertions
 
 ```cpp
 // Debug break (Windows only currently)
-IM3D_DEBUGBREAK();
+Imgn_DEBUGBREAK();
 
 // Assertions with custom messages
-IM3D_ASSERT(condition, "Error message with parameter: {}", value);
+Imgn_ASSERT(condition, "Error message with parameter: {}", value);
 
 // Simple assertions
-IM3D_ASSERT_NO_MSG(condition);
+Imgn_ASSERT_NO_MSG(condition);
 ```
 
 ### Input System
@@ -145,7 +145,7 @@ The renderer supports OpenGL as the primary graphics API:
 
 ```cpp
 // Initialize renderer
-IM3D::Renderer::Init(); // Sets context to OpenGL
+Imgn::Renderer::Init(); // Sets context to OpenGL
 ```
 
 ### Shader System
@@ -238,11 +238,11 @@ shader.setMat4("projection", camera.projection);
 
 ```cpp
 // Create window with default options
-auto window = IM3D::Window::Create();
+auto window = Imgn::Window::Create();
 
 // Create window with custom options
-IM3D::WindowOptions options(1920, 1080, "My Game");
-auto window = IM3D::Window::Create(options);
+Imgn::WindowOptions options(1920, 1080, "My Game");
+auto window = Imgn::Window::Create(options);
 ```
 
 ### Window Interface
@@ -263,7 +263,7 @@ bool vsyncEnabled = window->IsVsync();
 struct WindowOptions {
     uint32_t Width = 1920;
     uint32_t Height = 1080;
-    std::string Title = "Imagine3D Application";
+    std::string Title = "Imgn Application";
 };
 ```
 
@@ -274,16 +274,16 @@ struct WindowOptions {
 The engine uses CMake for cross-platform building:
 
 ```cmake
-# Engine build (IM3D/CMakeLists.txt)
+# Engine build (Imgn/CMakeLists.txt)
 cmake_minimum_required(VERSION 3.10)
-project(IM3D)
+project(Imgn)
 set(CMAKE_CXX_STANDARD 17)
 
 # Create shared library
-add_library(IM3D SHARED ${SRC})
+add_library(Imgn SHARED ${SRC})
 
 # Link required libraries
-target_link_libraries(IM3D PRIVATE 
+target_link_libraries(Imgn PRIVATE 
     opengl32 
     glfw3 
     assimp-vc143-mtd 
@@ -298,19 +298,19 @@ target_link_libraries(IM3D PRIVATE
 cmake_minimum_required(VERSION 3.10)
 project(Sandbox)
 
-# Link against IM3D engine
-target_link_libraries(Sandbox PRIVATE IM3D.lib)
-target_compile_definitions(Sandbox PRIVATE IM3D_DYNAMIC_LINK)
+# Link against Imgn engine
+target_link_libraries(Sandbox PRIVATE Imgn.lib)
+target_compile_definitions(Sandbox PRIVATE Imgn_DYNAMIC_LINK)
 ```
 
 ### Required Definitions
 
 ```cpp
 // For DLL usage
-#define IM3D_DYNAMIC_LINK
+#define Imgn_DYNAMIC_LINK
 
 // Platform detection (automatic)
-#define IM3D_PLATFORM_WINDOWS  // On Windows
+#define Imgn_PLATFORM_WINDOWS  // On Windows
 ```
 
 ## API Reference
@@ -338,7 +338,7 @@ The engine provides an automatic entry point:
 ```cpp
 // Automatically defined for Windows
 int main(int argc, char** argv) {
-    auto app = IM3D::CreateApplication();
+    auto app = Imgn::CreateApplication();
     app->Init();
     app->Run();
     return 0;
@@ -348,9 +348,9 @@ int main(int argc, char** argv) {
 ### Platform Detection
 
 ```cpp
-#ifdef IM3D_PLATFORM_WINDOWS
+#ifdef Imgn_PLATFORM_WINDOWS
     // Windows-specific code
-    #define IM3D_DEBUGBREAK() __debugbreak()
+    #define Imgn_DEBUGBREAK() __debugbreak()
 #else
     #error "Platform doesn't support debugbreak yet!"
 #endif
@@ -361,20 +361,20 @@ int main(int argc, char** argv) {
 ### Basic Application
 
 ```cpp
-#include "IM3D.h"
+#include "Imgn.h"
 
-class MyApp : public IM3D::Application {
+class MyApp : public Imgn::Application {
 public:
     MyApp() {
-        IM3D_LOG_CLIENT(IM3D_INFO, "Application created");
+        Imgn_LOG_CLIENT(Imgn_INFO, "Application created");
     }
     
     ~MyApp() {
-        IM3D_LOG_CLIENT(IM3D_INFO, "Application destroyed");
+        Imgn_LOG_CLIENT(Imgn_INFO, "Application destroyed");
     }
 };
 
-std::shared_ptr<IM3D::Application> IM3D::CreateApplication() {
+std::shared_ptr<Imgn::Application> Imgn::CreateApplication() {
     return std::make_shared<MyApp>();
 }
 ```
@@ -382,7 +382,7 @@ std::shared_ptr<IM3D::Application> IM3D::CreateApplication() {
 ### Rendering Example
 
 ```cpp
-class RenderApp : public IM3D::Application {
+class RenderApp : public Imgn::Application {
 private:
     Shader shader;
     Model model;
@@ -412,13 +412,13 @@ public:
 ## File Structure
 
 ```
-IM3D/
+Imgn/
 ├── src/
-│   ├── IM3D/
+│   ├── Imgn/
 │   │   ├── Core/           # Core engine systems
 │   │   ├── Renderer/       # Graphics and rendering
 │   │   └── Window/         # Window management
-│   └── IM3Dpch.h          # Precompiled header
+│   └── Imgnpch.h          # Precompiled header
 ├── vendor/
 │   ├── include/           # Third-party headers
 │   └── lib/              # Third-party libraries
@@ -432,7 +432,7 @@ Sandbox/                  # Example application
 
 ## Contributing
 
-The IM3D engine is open for contributions. When adding new features:
+The Imgn engine is open for contributions. When adding new features:
 
 1. Follow the existing code style
 2. Add appropriate logging

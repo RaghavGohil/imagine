@@ -16,12 +16,3 @@
     #include <unordered_set>
     #include <cstdint>
 #endif
-
-// platform specific
-#ifdef Imgn_PLATFORM_WINDOWS
-    #include <windows.h>
-    #ifndef NOMINMAX
-        // min max issue
-        #define NOMINMAX
-    #endif
-#endif

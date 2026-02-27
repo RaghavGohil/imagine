@@ -1,9 +1,9 @@
 /**
- * Imgn or simply Imgn is a game engine heavily inspired from the Hazel Engine(https://github.com/TheCherno/Hazel).
- * @author Raghav Gohil aka Th3L0w3Nd
+ * Imagine or simply Imgn is a game engine heavily inspired from the Hazel Engine.
+ * @author Raghav Gohil aka The Low End 
 **/
 
-//Put entirety of all engine headers here.
+//The entirety of all engine headers is put here.
 #pragma once
 
 #include "Imgn/Core/PlatformDetection.h"

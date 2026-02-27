@@ -2,7 +2,7 @@
 
 ## Overview
 
-Imgn (Imgn) is a 3D game engine built in C++ with a focus on simplicity and performance. The engine is heavily inspired by the Hazel Engine and provides a solid foundation for creating 3D applications and games.
+Imagine (Imgn) is a 3D game engine built in C++ with a focus on simplicity and performance. The engine is heavily inspired by the Hazel Engine and provides a solid foundation for creating 3D applications and games.
 
 ## Table of Contents
 

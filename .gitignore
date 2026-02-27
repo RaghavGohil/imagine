@@ -50,3 +50,6 @@ CMakeUserPresets.json
 
 # External projects
 *-prefix/
+
+# Misc
+build/
